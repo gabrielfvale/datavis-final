@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+    <title>Visualização de Dados</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="image" style="background-image: url(./assets/matt-howard-eAKDzK4lo4o-unsplash.jpg)"></section>
+      <section class="heading">
+        <h1>As mudanças climáticas mundiais</h1>
+        <h1> e as queimadas no Brasil</h1>
+      </section>
+      <section class="text" style="--bg: #c8c8bc">
+        <h1>World map</h1>
+        <div id="world-map"></div>
+      </section>
+    </div>
+    <div class="footer">
+      <h3>Footer</h3>
+    </div>
+
+    <script type="text/javascript">
+      var view;
+
+      fetch('https://vega.github.io/vega/examples/bar-chart.vg.json')
+        .then(res => res.json())
+        .then(spec => render(spec))
+        .catch(err => console.error(err));
+  
+      function render(spec) {
+        view = new vega.View(vega.parse(spec), {
+          renderer: 'svg',
+          container: '#world-map',
+          hover: true
+        });
+        return view.runAsync();
+      }
+    </script>
+
+  </body>
+</html>
