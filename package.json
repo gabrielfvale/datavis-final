@@ -1,0 +1,8 @@
+{
+  "name": "datavis-final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gabrielfvale/datavis-final.git",
+  "author": "Gabriel Freire <gabrielfvale@gmail.com>",
+  "license": "MIT"
+}
