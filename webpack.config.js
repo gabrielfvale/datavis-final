@@ -1,12 +1,21 @@
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const fs = require("fs");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const appDirectory = fs.realpathSync(process.cwd());
+
+const resolveAppPath = (relativePath) =>
+  path.resolve(appDirectory, relativePath);
 
 module.exports = {
-  entry: "./src/index.js",
+  mode: "development",
+
+  entry: resolveAppPath("src/app.js"),
+
   output: {
-    filename: "application.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: "static/js/bundle.js",
   },
+
   module: {
     rules: [
       {
@@ -15,12 +24,27 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        exclude: /node_modules/,
+        include: resolveAppPath("src"),
         loader: "babel-loader",
-        query: {
-          presets: ["es2015"],
-        },
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "src/index.html" })],
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: resolveAppPath("public/index.html"),
+    }),
+  ],
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    compress: true,
+    hot: true,
+    liveReload: true,
+    port: 3000,
+  },
 };
