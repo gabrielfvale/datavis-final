@@ -31,15 +31,36 @@ section.image {
   z-index: -1;
   height: 100vh;
 }
+section.half {
+  background-position: center center;
+  transform: translateZ(-1px) scale(1.5);
+  background-size: cover;
+  z-index: -1;
+  height: 50vh;
+}
 section.text {
   height: 50vh;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 section.heading {
   z-index: -1;
   transform: translateY(-50vh) translateZ(1px);
   display: flex;
   flex-direction: column;
+}
+.flex-col {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 5rem;
+  justify-content: center;
+}
+.paragraph {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 30%;
+  padding: 2rem;
 }
 
 .footer {
@@ -51,8 +72,12 @@ section.heading {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .footer h3 {
   font-weight: normal;
   color: var(--color-blue);
+}
+.footer a {
+  color: #ccc;
 }
